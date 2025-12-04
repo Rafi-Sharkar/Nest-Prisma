@@ -1,0 +1,36 @@
+
+
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:17-alpine   # lightest and fastest official image
+    container_name: postgres-latest
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: chatapp           # change to your app name
+      POSTGRES_USER: postgres      # change as needed
+      POSTGRES_PASSWORD: admin  # CHANGE THIS IN PRODUCTION!
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Optional: mount custom config or init scripts
+      # - ./init-scripts:/docker-entrypoint-initdb.d/
+      # - ./postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+    ports:
+      - "5452:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myapp_user -d myapp_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - backend
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  backend:
+    driver: bridge
