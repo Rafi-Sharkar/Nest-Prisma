@@ -1,0 +1,37 @@
+model User {
+  id                   String                   @id @default(uuid())
+  name                 String                   @default("Unnamed User")
+  email                String                   @unique
+  phone                String                   @unique
+  password             String
+  role                 UserRole                 @default(CUSTOMER)
+  status               UserStatus               @default(ACTIVE)
+  isVerified           Boolean                  @default(false)
+  phoneVerified        Boolean                  @default(false)
+  lastLoginAt          DateTime?
+  lastActiveAt         DateTime?
+  fcmToken             String?
+  profilePictureId     String?
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @default(now()) @updatedAt
+  isDelete             Boolean @default(false)
+  deletedAt            DateTime?
+  refreshTokens        RefreshToken[]
+  otps                 UserOtp[]
+  profilePicture       FileInstance?            @relation(fields: [profilePictureId], references: [id])
+
+  @@map("users")
+}
+
+enum UserRole {
+  CUSTOMER
+  EMPLOYEE
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  DELETED
+}

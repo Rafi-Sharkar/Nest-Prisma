@@ -1,0 +1,25 @@
+model FileInstance {
+  id               String           @id @default(uuid())
+  filename         String?
+  originalFilename String?
+  path             String?
+  url              String?
+  fileType         FileType         @default(any)
+  mimeType         String?
+  size             Int?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @default(now()) @updatedAt
+  users            User[]
+
+  @@map("file_instances")
+}
+
+enum FileType {
+  image
+  docs
+  link
+  document
+  any
+  video
+  audio
+}

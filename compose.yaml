@@ -8,7 +8,7 @@ services:
     container_name: postgres-latest
     restart: unless-stopped
     environment:
-      POSTGRES_DB: chatapp           # change to your app name
+      POSTGRES_DB: nestapp           # change to your app name
       POSTGRES_USER: postgres      # change as needed
       POSTGRES_PASSWORD: admin  # CHANGE THIS IN PRODUCTION!
     volumes:

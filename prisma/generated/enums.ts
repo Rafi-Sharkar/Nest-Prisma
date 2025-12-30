@@ -9,7 +9,42 @@
 * 🟢 You can import this file directly.
 */
 
+export const OtpType = {
+  VERIFICATION: 'VERIFICATION',
+  RESET: 'RESET',
+  PHONE_VERIFICATION: 'PHONE_VERIFICATION'
+} as const
+
+export type OtpType = (typeof OtpType)[keyof typeof OtpType]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const FileType = {
+  image: 'image',
+  docs: 'docs',
+  link: 'link',
+  document: 'document',
+  any: 'any',
+  video: 'video',
+  audio: 'audio'
+} as const
+
+export type FileType = (typeof FileType)[keyof typeof FileType]
+
+
+export const UserRole = {
+  CUSTOMER: 'CUSTOMER',
+  EMPLOYEE: 'EMPLOYEE',
+  ADMIN: 'ADMIN',
+  SUPER_ADMIN: 'SUPER_ADMIN'
+} as const
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+
+export const UserStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  DELETED: 'DELETED'
+} as const
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
